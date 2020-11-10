@@ -20,10 +20,11 @@ class QuestTest extends TestCase
         $env->load();
     }
 
-    public function testSubject()
+    public function testBasic()
     {
         $quest = new Quest();
 
         $this->assertEquals(Quest::SUBJECT, $quest->__subject());
+        $this->assertEquals(1, $quest->incLevel());
     }
 }
