@@ -1,0 +1,63 @@
+{
+  "name": "extas/lasitis-api",
+  "repositories": [
+    {
+      "name": "balances",
+      "scope": "extas",
+      "pk": "name",
+      "class": "extas\\components\\balances\\Balance",
+      "aliases": ["balances"]
+    },
+    {
+      "name": "level_schemas",
+      "scope": "extas",
+      "pk": "name",
+      "class": "extas\\components\\levels\\LevelSchema",
+      "aliases": ["level_schemas"]
+    },
+    {
+      "name": "quests",
+      "scope": "extas",
+      "pk": "name",
+      "class": "extas\\components\\quests\\Quest",
+      "aliases": ["quests"]
+    },
+    {
+      "name": "transactions",
+      "scope": "extas",
+      "pk": "id",
+      "class": "extas\\components\\transactions\\Transaction",
+      "aliases": ["transactions"]
+    }
+  ],
+  "plugins_install": [
+    {
+      "repository": "balances",
+      "name": "balance",
+      "section": "balances"
+    },
+    {
+      "repository": "level_schemas",
+      "name": "level schema",
+      "section": "level_schemas"
+    },
+    {
+      "repository": "quests",
+      "name": "quest",
+      "section": "quests"
+    },
+    {
+      "repository": "transactions",
+      "name": "transaction",
+      "section": "transactions"
+    }
+  ],
+  "players": [
+    {
+      "name": "@chest",
+      "title": "System chest",
+      "description": "The root of all transactions",
+      "aliases": ["@chest"]
+    }
+  ]
+}
