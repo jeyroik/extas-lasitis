@@ -2,9 +2,11 @@
 namespace extas\components\balances;
 
 use extas\components\Item;
+use extas\components\levels\THasLevelSchema;
 use extas\components\players\THasPlayer;
 use extas\components\THasDescription;
 use extas\components\THasName;
+use extas\components\THasType;
 use extas\components\THasUpdatedAt;
 use extas\components\THasValue;
 use extas\interfaces\balances\IBalance;
@@ -22,6 +24,8 @@ class Balance extends Item implements IBalance
     use THasValue;
     use THasPlayer;
     use THasName;
+    use THasLevelSchema;
+    use THasType;
 
     /**
      * @param float $increment

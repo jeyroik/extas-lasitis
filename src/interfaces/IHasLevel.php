@@ -17,6 +17,11 @@ interface IHasLevel
     public function getLevel(): int;
 
     /**
+     * @return int
+     */
+    public function getNextLevel(): int;
+
+    /**
      * @param int $level
      * @return $this
      */

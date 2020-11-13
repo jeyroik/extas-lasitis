@@ -5,14 +5,14 @@ use extas\components\Item;
 use extas\components\THasCreatedAt;
 use extas\components\THasId;
 use extas\components\THasValue;
-use extas\interfaces\players\IPlayer;
+use extas\interfaces\balances\IBalance;
 use extas\interfaces\repositories\IRepository;
 use extas\interfaces\transactions\ITransaction;
 
 /**
  * Class Transaction
  *
- * @method IRepository players()
+ * @method IRepository balances()
  *
  * @package extas\components\transactions
  * @author jeyroik <jeyroik@gmail.com>
@@ -26,33 +26,33 @@ class Transaction extends Item implements ITransaction
     /**
      * @return string
      */
-    public function getFromPlayerName(): string
+    public function getFromBalanceName(): string
     {
-        return $this->config[static::FIELD__FROM_PLAYER] ?? '';
+        return $this->config[static::FIELD__FROM_BALANCE] ?? '';
     }
 
     /**
-     * @return IPlayer|null
+     * @return IBalance|null
      */
-    public function getFromPlayer(): ?IPlayer
+    public function getFromBalance(): ?IBalance
     {
-        return $this->players()->one([IPlayer::FIELD__NAME => $this->getFromPlayerName()]);
+        return $this->balances()->one([IBalance::FIELD__NAME => $this->getFromBalanceName()]);
     }
 
     /**
      * @return string
      */
-    public function getToPlayerName(): string
+    public function getToBalanceName(): string
     {
-        return $this->config[static::FIELD__TO_PLAYER] ?? '';
+        return $this->config[static::FIELD__TO_BALANCE] ?? '';
     }
 
     /**
-     * @return IPlayer|null
+     * @return IBalance|null
      */
-    public function getToPlayer(): ?IPlayer
+    public function getToBalance(): ?IBalance
     {
-        return $this->players()->one([IPlayer::FIELD__NAME => $this->getToPlayerName()]);
+        return $this->balances()->one([IBalance::FIELD__NAME => $this->getToBalanceName()]);
     }
 
     /**
@@ -67,9 +67,9 @@ class Transaction extends Item implements ITransaction
      * @param string $name
      * @return $this|Transaction
      */
-    public function setFromPlayerName(string $name)
+    public function setFromBalanceName(string $name)
     {
-        $this->config[static::FIELD__FROM_PLAYER] = $name;
+        $this->config[static::FIELD__FROM_BALANCE] = $name;
 
         return $this;
     }
@@ -78,9 +78,9 @@ class Transaction extends Item implements ITransaction
      * @param string $name
      * @return $this|Transaction
      */
-    public function setToPlayerName(string $name)
+    public function setToBalanceName(string $name)
     {
-        $this->config[static::FIELD__TO_PLAYER] = $name;
+        $this->config[static::FIELD__TO_BALANCE] = $name;
 
         return $this;
     }

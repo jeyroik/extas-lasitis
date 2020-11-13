@@ -21,6 +21,58 @@ class LevelSchema extends Item implements ILevelSchema
      * @param int $level
      * @return int
      */
+    public function getBalanceLevel(int $level): int
+    {
+        $mParam = $this->getParameterValue(static::PARAM__BALANCE_LEVEL, []);
+
+        return $mParam[$level] ?? 0;
+    }
+
+    /**
+     * @param int $level
+     * @param int $l
+     * @return $this|LevelSchema
+     * @throws \Exception
+     */
+    public function setBalanceLevel(int $level, int $l)
+    {
+        $mParam = $this->getParameterValue(static::PARAM__BALANCE_LEVEL, []);
+        $mParam[$level] = $l;
+        $this->setParameterValue(static::PARAM__BALANCE_LEVEL, $mParam);
+
+        return $this;
+    }
+
+    /**
+     * @param int $level
+     * @return int
+     */
+    public function getPrice(int $level): int
+    {
+        $mParam = $this->getParameterValue(static::PARAM__PRICE, []);
+
+        return $mParam[$level] ?? 0;
+    }
+
+    /**
+     * @param int $level
+     * @param int $p
+     * @return $this|LevelSchema
+     * @throws \Exception
+     */
+    public function setPrice(int $level, int $p)
+    {
+        $mParam = $this->getParameterValue(static::PARAM__PRICE, []);
+        $mParam[$level] = $p;
+        $this->setParameterValue(static::PARAM__PRICE, $mParam);
+
+        return $this;
+    }
+
+    /**
+     * @param int $level
+     * @return int
+     */
     public function getMultiplicator(int $level): int
     {
         $mParam = $this->getParameterValue(static::PARAM__MULTIPLICATOR, []);

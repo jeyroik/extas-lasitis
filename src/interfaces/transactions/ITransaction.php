@@ -4,7 +4,8 @@ namespace extas\interfaces\transactions;
 use extas\interfaces\IHasCreatedAt;
 use extas\interfaces\IHasId;
 use extas\interfaces\IHasValue;
-use extas\interfaces\players\IPlayer;
+use extas\interfaces\IItem;
+use extas\interfaces\Balances\IBalance;
 
 /**
  * Interface ITransaction
@@ -12,33 +13,33 @@ use extas\interfaces\players\IPlayer;
  * @package extas\interfaces\transactions
  * @author jeyroik <jeyroik@gmail.com>
  */
-interface ITransaction extends IHasCreatedAt, IHasValue, IHasId
+interface ITransaction extends IItem, IHasCreatedAt, IHasValue, IHasId
 {
     public const SUBJECT = 'extas.transaction';
 
-    public const FIELD__FROM_PLAYER = 'from_player';
-    public const FIELD__TO_PLAYER = 'to_player';
+    public const FIELD__FROM_BALANCE = 'from_balance';
+    public const FIELD__TO_BALANCE = 'to_balance';
     public const FIELD__COMMENT = 'comment';
 
     /**
      * @return string
      */
-    public function getFromPlayerName(): string;
+    public function getFromBalanceName(): string;
 
     /**
-     * @return IPlayer|null
+     * @return IBalance|null
      */
-    public function getFromPlayer(): ?IPlayer;
+    public function getFromBalance(): ?IBalance;
 
     /**
      * @return string
      */
-    public function getToPlayerName(): string;
+    public function getToBalanceName(): string;
 
     /**
-     * @return IPlayer|null
+     * @return IBalance|null
      */
-    public function getToPlayer(): ?IPlayer;
+    public function getToBalance(): ?IBalance;
 
     /**
      * @return string
@@ -49,13 +50,13 @@ interface ITransaction extends IHasCreatedAt, IHasValue, IHasId
      * @param string $name
      * @return $this
      */
-    public function setFromPlayerName(string $name);
+    public function setFromBalanceName(string $name);
 
     /**
      * @param string $name
      * @return $this
      */
-    public function setToPlayerName(string $name);
+    public function setToBalanceName(string $name);
 
     /**
      * @param string $comment

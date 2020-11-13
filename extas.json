@@ -13,7 +13,7 @@
       "scope": "extas",
       "pk": "name",
       "class": "extas\\components\\levels\\LevelSchema",
-      "aliases": ["level_schemas"]
+      "aliases": ["level_schemas", "levelSchemas"]
     },
     {
       "name": "quests",
@@ -58,6 +58,171 @@
       "title": "System chest",
       "description": "The root of all transactions",
       "aliases": ["@chest"]
+    }
+  ],
+  "level_schemas": [
+    {
+      "name": "default",
+      "title": "Стандартная",
+      "description": "Стандартная схема (по умолчанию)",
+      "parameters": {
+        "bl": {
+          "name": "bl",
+          "value": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        "price": {
+          "name": "price",
+          "value": [
+            0,
+            0,
+            100,
+            500,
+            5000,
+            100000,
+            500000,
+            5000000,
+            100000000,
+            500000000,
+            5000000000
+          ]
+        },
+        "m": {
+          "name": "m",
+          "value": [
+            0,
+            1,
+            1,
+            5,
+            10,
+            20,
+            5,
+            10,
+            20,
+            5,
+            10
+          ]
+        }
+      }
+    }
+  ],
+  "plugins": [
+    {
+      "class": "extas\\components\\plugins\\expands\\ByPlayerExpand",
+      "stage": ["extas.expand.balance.player", "extas.expand.quest.player"]
+    },
+    {
+      "class": "extas\\components\\plugins\\expands\\ByLevelSchemaExpand",
+      "stage": "extas.expand.balance.level.schema"
+    },
+    {
+      "class": "extas\\components\\plugins\\expands\\balances\\ByUpAvailability",
+      "stage": "extas.expand.balance.up.allow"
+    },
+    {
+      "class": "extas\\components\\plugins\\expands\\ByLevelSchemaExpand",
+      "stage": "extas.expand.quest.level.schema"
+    },
+    {
+      "class": "extas\\components\\plugins\\expands\\quests\\ByUpAvailability",
+      "stage": "extas.expand.quest.up.allow"
+    },
+    {
+      "class": "extas\\components\\plugins\\expands\\transactions\\ByFromExpand",
+      "stage": "extas.expand.transaction.from_balance"
+    },
+    {
+      "class": "extas\\components\\plugins\\expands\\transactions\\ByToExpand",
+      "stage": "extas.expand.transaction.to_balance"
+    },
+    {
+      "class": "extas\\components\\plugins\\expands\\ByPlayerBalanceExpand",
+      "stage": "extas.expand.quest.player.balance"
+    },
+    {
+      "class": "extas\\components\\plugins\\players\\CreateBalance",
+      "stage": "extas.players.create.after"
+    },
+    {
+      "class": "extas\\components\\plugins\\players\\DeleteProperty",
+      "stage": "extas.players.delete.after"
+    },
+    {
+      "class": "extas\\components\\plugins\\transactions\\CheckBalance",
+      "stage": "extas.transactions.create.before"
+    },
+    {
+      "class": "extas\\components\\plugins\\transactions\\UpdateBalance",
+      "stage": "extas.transactions.create.after"
+    }
+  ],
+  "jsonrpc_operations": [
+    {
+      "name": "balance.up",
+      "title": "Balance level up",
+      "description": "Balance level up",
+      "class": "extas\\components\\operations\\jsonrpc\\BalanceLevelUp",
+      "specs": {
+        "request": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array"
+            },
+            "total": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "parameters": {}
+    },
+    {
+      "name": "quest.up",
+      "title": "Quest level up",
+      "description": "Quest level up",
+      "class": "extas\\components\\operations\\jsonrpc\\QuestLevelUp",
+      "specs": {
+        "request": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array"
+            },
+            "total": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "parameters": {}
     }
   ]
 }

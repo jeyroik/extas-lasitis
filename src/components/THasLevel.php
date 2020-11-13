@@ -22,6 +22,14 @@ trait THasLevel
     }
 
     /**
+     * @return int
+     */
+    public function getNextLevel(): int
+    {
+        return $this->getLevel()+1;
+    }
+
+    /**
      * @param int $level
      * @return $this
      */

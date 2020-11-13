@@ -1,12 +1,8 @@
 <?php
 namespace extas\components\quests;
 
-use extas\components\Item;
-use extas\components\players\THasPlayer;
-use extas\components\THasDescription;
-use extas\components\THasLevel;
-use extas\components\THasName;
-use extas\components\THasValue;
+use extas\components\balances\THasBalance;
+use extas\components\quests\samples\QuestSample;
 use extas\interfaces\quests\IQuest;
 
 /**
@@ -15,19 +11,15 @@ use extas\interfaces\quests\IQuest;
  * @package extas\components\quests
  * @author jeyroik <jeyroik@gmail.com>
  */
-class Quest extends Item implements IQuest
+class Quest extends QuestSample implements IQuest
 {
-    use THasName;
-    use THasDescription;
-    use THasPlayer;
-    use THasLevel;
-    use THasValue;
+    use THasBalance;
 
     /**
      * @return string
      */
     protected function getSubjectForExtension(): string
     {
-        return static::SUBJECT;
+        return 'extas.quest';
     }
 }
